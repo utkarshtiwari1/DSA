@@ -1,5 +1,8 @@
 # Restore the array
 
+Approach - DP
+
+
 Example 1:
 
 Input: s = "1000", k = 10000
