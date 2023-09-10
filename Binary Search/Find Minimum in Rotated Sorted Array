@@ -1,0 +1,13 @@
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+
+        n = len(nums)
+        low, high = 0, n - 1
+        while (low <= high):
+            mid = low + (high - low) // 2
+            if nums[low] <= nums[high]:   # return nums[low] if array is not rotated
+                return nums[low]
+            if nums[low] > nums[mid]:     # check where the minimum element is present
+                high = mid
+            else:
+                low = mid + 1
