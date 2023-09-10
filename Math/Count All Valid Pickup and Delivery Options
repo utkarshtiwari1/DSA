@@ -1,0 +1,13 @@
+class Solution:
+    def countOrders(self, n: int) -> int:
+        
+        if n == 1:
+            return 1
+        ans = 1
+        for i in range(2, n + 1):
+            # spaces = (n - 1) * 2 + 1
+            # cur_possibility = spaces * (spaces + 1) // 2
+            # ans *= cur_possibility
+            ans = ans * (2 * i - 1) * i
+        ans = ans % (10**9 + 7)
+        return ans 
