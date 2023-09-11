@@ -1,0 +1,21 @@
+class Solution:
+    def groupThePeople(self, gr: List[int]) -> List[List[int]]:
+
+        d={}
+        l=[]
+        for i,num in enumerate(gr):
+            d[num]=d.get(num,[])+[i]
+            if len(d[num])==num:
+                l+=([d.pop(num)])
+        return l
+      
+----------------------------------------------
+
+        l=[]
+        d=defaultdict(list)
+        for i in range(len(gr)):
+            d[gr[i]].append(i)
+        for key,value in d.items():
+            for i in range(0,len(value),key):
+                l.append(value[i:i+key])
+        return l
