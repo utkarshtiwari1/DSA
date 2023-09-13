@@ -1,0 +1,16 @@
+from collections import defaultdict
+class Solution:
+    def minDeletions(self, s: str) -> int:
+        
+        st = set()
+        count = 0
+        d = defaultdict()
+        for i in s:
+            d[i] = d.get(i, 0) + 1
+
+        for i in d.values():
+            while i > 0 and i in st:
+                i -= 1
+                count += 1
+            st.add(i)
+        return count
