@@ -1,0 +1,18 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+
+        n = len(graph)
+        ans = []
+        q =[]
+        q.append([0])
+
+        while q:
+            node = q.pop(0)
+            
+            if node[-1] == n - 1:
+                ans.append(node)
+                       
+            for i in graph[node[-1]]:
+                q.append(node + [i])  
+
+        return ans
