@@ -1,0 +1,20 @@
+class Solution:
+        
+    def equalPartition(self, N, arr):
+        
+        n = len(arr)     
+        if not arr:
+            return True   
+        if sum(arr) % 2 != 0:
+            return False
+            
+        s = sum(arr)//2
+        dp = [False for _ in range(s+1)]
+        dp[0] = True
+        
+        for i in arr:
+            for j in range(s, i-1, -1):
+                dp[j] = dp[j] or dp[j-i]
+            if dp[s]:
+                return True
+        return False
