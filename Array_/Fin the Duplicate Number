@@ -1,0 +1,23 @@
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+
+        d={}
+        for i in nums:
+            d[i]=d.get(i,0)+1
+        for key,value in d.items():
+            if value>1:
+                return key
+
+#-------------------------------------------------------------------------------------------------
+# Cycle Sort
+
+        for i in range(len(nums)):
+            while nums[i] != i+1:
+                nextidx = nums[i]-1
+                if nums[nextidx] == nums[i]:
+                    return nums[i]
+                nums[i], nums[nextidx] = nums[nextidx], nums[i]
+
+
+
+#  sorting, BinarySearch, Cycle Sort, Hashmap
