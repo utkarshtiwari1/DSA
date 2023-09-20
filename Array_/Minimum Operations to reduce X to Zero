@@ -1,0 +1,28 @@
+class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:
+
+        if min(nums) > x:
+            return -1
+        if sum(nums) < x:
+            return -1
+
+        n = len(nums)
+        d = {0:-1}
+        summ = 0
+        longestsubarr = float("-inf")
+        
+        for i in range(n):
+            summ += nums[i]
+            d[summ] = i
+
+        targetsum = summ - x
+        summ = 0
+
+        for i in range(n):
+            summ += nums[i]
+            findsum = summ - targetsum
+            if findsum in d:
+                j = d[findsum]
+                longestsubarr = max(longestsubarr, i - j)
+                
+        return -1 if longestsubarr == float("-inf") else (n - longestsubarr)
