@@ -1,0 +1,38 @@
+
+class Solution:
+    def find(self, arr, n, x):
+        
+        l = []
+        for i in range(n):
+            if arr[i] == x:
+                l.append(i)
+                break
+        for i in range(n-1,-1,-1):
+            if arr[i] == x:
+                l.append(i)
+                break
+        if len(l) == 0:
+            return [-1,-1]
+        return l
+        
+#--------------------------------------------------------------------------------------------
+
+        d = {}
+        
+        for i,v in enumerate(arr):
+            if v not in d:
+                d[v] = [i]
+            else:
+                d[v].append(i)
+                
+        first = -1
+        second = -1
+        
+        if x not in d:
+            return [first,second]
+            
+        else:
+            t = d[x]
+            first = t[0]
+            second = t[1]
+            return [first,second]
