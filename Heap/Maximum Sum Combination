@@ -1,0 +1,28 @@
+import heapq
+class Solution:
+    def maxCombinations(self, N, K, A, B):
+        
+        ans = []
+        
+        A.sort(reverse=True)
+        B.sort(reverse=True)
+        
+        q=[(-(A[0]+B[0]),0,0)]
+        vis=set((0,0))
+        
+        while K:
+ 
+            sum,i,j=heapq.heappop(q)
+            ans.append(-sum)
+            
+            if i+1<N and (i+1,j) not in vis:
+                heapq.heappush(q,(-(A[i+1]+B[j]),i+1,j))
+                vis.add((i+1,j))
+                
+            if j+1<N and (i,j+1) not in vis:
+                heapq.heappush(q,(-(A[i]+B[j+1]),i,j+1))
+                vis.add((i,j+1))
+                
+            K-=1
+            
+        return ans
