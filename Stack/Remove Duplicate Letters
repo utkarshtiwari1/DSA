@@ -1,0 +1,15 @@
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        
+        ans = []
+        vis = set()
+        d = {num : i for i, num in enumerate(s)} #last occurence of chrts in the string.
+
+        for i, num in enumerate(s):
+            if num not in vis:    # if num is already in the stack then skip it 
+                while ans and num < ans[-1] and i < d[ans[-1]]:    # if not in the set then compare it with the top character of the string if the current character is smaller and  
+                    vis.remove(ans.pop())                          # top character appears later in the string , pop the top character.
+                vis.add(num)
+                ans.append(num)
+
+        return "".join(ans)
