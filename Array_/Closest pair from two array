@@ -1,0 +1,18 @@
+class Solution:
+    def printClosest (self,arr, brr, n, m, x) : 
+        
+        i, j = 0, m-1
+        m = float("inf")
+        ans = None
+        while i < n and j >= 0:
+            sum = arr[i] + brr[j]
+            if abs(sum - x) < m:
+                m = abs(sum-x)
+                ans = (arr[i],brr[j])
+            if sum > x:
+                j -= 1
+            elif sum < x:
+                i += 1
+            else:
+                break
+        return ans
