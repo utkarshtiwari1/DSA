@@ -1,0 +1,21 @@
+class Solution:
+    def decodeAtIndex(self, s: str, k: int) -> str:
+        
+        l = 0  # current length of the decoded string.
+        c = 0
+        while l < k:            # forward traversal , updating length whether encounter length or a digit.
+            if s[c].isdigit():
+                l = l * int(s[c])
+            else:
+                l += 1
+            c += 1
+        for i in range(c-1, -1, -1):  # Reverse traversal 
+            t = s[i]
+            if t.isdigit():
+                l //= int(t)
+                k %= l
+            else:
+                if k == 0 or k == l:
+                    return t
+                l -= 1
+        return ""
