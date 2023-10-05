@@ -1,0 +1,24 @@
+class Solution:
+    def substrCount (self,s, k):
+        
+        def solve(s,k):
+            
+            n = len(s)
+            left, right = 0, 0
+            ans = 0
+            dif = 0
+            l = [0]*26
+            while right < n:
+                l[ord(s[right]) - ord("a")] += 1
+                if l[ord(s[right]) - ord("a")] == 1:
+                    dif += 1
+                while dif > k:
+                    l[ord(s[left]) - ord("a")] -= 1
+                    if l[ord(s[left]) - ord("a")] == 0:
+                        dif -= 1
+                    left += 1
+                ans += right - left + 1
+                right += 1
+            return ans
+
+        return solve(s,k) - solve(s,k-1)
