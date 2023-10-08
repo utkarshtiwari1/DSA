@@ -1,0 +1,19 @@
+class Solution:
+    def sortedInsert(self, head,key):
+        temp, prev = head, None
+        flag = False
+        while temp != None:
+            if temp.data >= key:
+                flag = True
+                if prev == None:
+                    head = Node(key)
+                    head.next = temp
+                else:
+                    prev.next = Node(key)
+                    prev.next.next = temp
+                break
+            prev = temp
+            temp = temp.next
+        if flag == False:
+            prev.next = Node(key)
+        return head
