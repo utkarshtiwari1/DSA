@@ -1,0 +1,20 @@
+class Solution:
+    def minimumNumberOfDeletions(self,S):
+        n = len(S)
+        t = [[-1 for i in range(n+1)]for j in range(n+1)]
+        
+        def solve(i,j):
+            if i >= j:
+                return 0
+            if t[i][j] != -1:
+                return t[i][j]
+            e,ne = 0,0
+            if S[i] == S[j]:
+                e = solve(i+1, j-1)
+            else:
+                ne = 1 + min(solve(i+1,j), solve(i,j-1))
+            
+            t[i][j] = e + ne
+            return t[i][j]
+            
+        return solve(0, n-1)
