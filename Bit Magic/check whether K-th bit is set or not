@@ -1,0 +1,11 @@
+class Solution:
+    
+    def checkKthBit(self, n,k):
+        for i in range(k):
+            n = n>>1
+        if n&1 == 1:
+            return 1
+        return 0
+        
+        
+        # return (n>>k)&1   -- By this we can check whether kth bit is set or not
