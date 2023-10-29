@@ -1,0 +1,14 @@
+class Solution:
+    def sumXOR (self, arr, n) : 
+        ans = 0
+        for i in range(32):
+            ones,zeros = 0,0
+            for j in arr:
+                if (1 << i) & j != 0:
+                    ones += 1
+                else:
+                    zeros += 1
+            ans += (1 << i) * ones * zeros
+            
+        return ans
+            
