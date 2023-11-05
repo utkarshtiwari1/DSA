@@ -1,0 +1,23 @@
+from collections import Counter
+class Solution:
+	def topK(self, nums, k):
+
+		d = Counter(nums)
+		s = sorted(d.items(), key=lambda x: (x[1],x[0]), reverse = True)
+		ans = [i[0] for i in s[:k]]
+		return ans
+
+
+    ans = []
+    	    s = [[] for i in range(len(nums) + 1)]
+    		d = {}
+    		for i in nums:
+    		    d[i] = d.get(i,0) + 1
+    		for key,value in d.items():
+    		    s[value].append(key)
+    		s = [sorted(c,reverse = True) for c in s]
+    		for i in range(len(s)-1, 0, -1):
+    		    for j in s[i]:
+    		        ans.append(j)
+    		        if len(ans) == k:
+    		            return ans
