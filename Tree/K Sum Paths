@@ -1,0 +1,24 @@
+class Solution:
+        
+    def sumK(self,root,k):
+        
+        count = 0
+        d = {0:1}
+        
+        def func(root, k, d, Sum):
+            nonlocal count
+            if root == None: 
+                return 
+            
+            Sum += root.data
+            
+            if (Sum-k) in d:
+                count += d[Sum-k]
+                
+            d[Sum] = d.get(Sum,0) + 1
+            func(root.left, k, d, Sum)
+            func(root.right, k, d, Sum)
+            d[Sum] -= 1
+            
+        func(root, k, d, 0)
+        return count
