@@ -1,0 +1,15 @@
+class Solution:
+    # return true/false denoting whether the tree is Symmetric or not
+    def isSymmetric(self, root):
+        
+        def solve(left,right):
+            
+            if left==None or right==None:
+                return left==right
+                
+            if left.data != right.data:
+                return False
+                
+            return (solve(left.left,right.right) and solve(left.right,right.left))
+
+        return (root==None or solve(root.left,root.right))
