@@ -1,0 +1,49 @@
+class Solution:
+    def get_height(self,node):
+        if node is None:
+            return 0
+        return node.height
+    def get_balance(self,node):
+        if node is None:
+            return 0
+        return self.get_height(node.left) - self.get_height(node.right)
+    def left_rotate(self,z):
+        y = z.right
+        t1 = y.left
+        z.right = t1
+        y.left = z
+        z.height = 1 + max(self.get_height(z.left),self.get_height(z.right))
+        y.height = 1 + max(self.get_height(y.left),self.get_height(y.right))
+        return y
+    def right_rotate(self,z):
+        y = z.left
+        t2 = y.right
+        z.left = t2
+        y.right = z
+        z.height = 1 + max(self.get_height(z.left),self.get_height(z.right))
+        y.height = 1 + max(self.get_height(y.left),self.get_height(y.right))
+        return y
+    def insertToAVL(self, node, key):
+        if not node:
+           node = Node(key)
+           return node
+        elif key == node.data:
+           return node
+        elif key < node.data:
+           node.left=self.insertToAVL(node.left,key)
+        else:
+           node.right=self.insertToAVL(node.right,key)
+           
+        node.height = 1 + max(self.get_height(node.left),self.get_height(node.right))
+        balance = self.get_balance(node)
+        if balance > 1 and key < node.left.data:
+            return self.right_rotate(node)
+        if balance <-1 and key > node.right.data:
+            return self.left_rotate(node)
+        if balance > 1 and key > node.left.data:
+            node.left = self.left_rotate(node.left)
+            return self.right_rotate(node)
+        if balance < -1 and key < node.right.data:
+            node.right = self.right_rotate(node.right)
+            return self.left_rotate(node)
+        return node
