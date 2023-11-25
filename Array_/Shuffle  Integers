@@ -1,0 +1,8 @@
+class Solution:
+    def shuffleArray(self, arr, n):
+        i = 1
+        for j in range(n//2, n):
+            a = arr.pop(j)
+            arr.insert(i,a)
+            i += 2
+        return arr
