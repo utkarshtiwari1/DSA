@@ -1,0 +1,8 @@
+class Solution:
+    
+    def pattern(self, N):
+        
+        if N <= 0:
+            return [N,]
+        ans = list(range(N, -5, -5))
+        return ans + ans[::-1][1:]
