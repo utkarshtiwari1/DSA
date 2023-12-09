@@ -1,0 +1,11 @@
+class Solution:
+    
+    def subArrayExists(self,arr,n):
+        t = 0
+        s = set()
+        for i in range(n):
+            t += arr[i]
+            if t == 0 or t in s:
+                return True
+            s.add(t)
+        return False
